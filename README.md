@@ -7,7 +7,10 @@ Add or delete firewall rules. With C#
 SharpFireWall.exe custom     /name:AllowRdp /proto:tcp /direction:in /action:allow /remoteport:* /remoteaddr:* /localport:3389 /localaddr:*
 SharpFilewall.exe service    /name:BlockWinDefend /proto:tcp /direction:out /action:block /service:sense
 SharpFilewall.exe app        /name:BlockWinDefend /proto:tcp /direction:out /action:block /appname:windefend
+donut.exe .\SharpFireWall.exe -c 'SharpFirewall.Program' -m 'Main' -p 'custom /name:AllowRdp /proto:tcp /direction:in /action:allow /remoteport:* /remoteaddr:* /localport:3389 /localaddr:*' -o fw.bin
 ```
+
+
 
 ```
 _____ __                     _____                         ____
