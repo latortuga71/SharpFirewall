@@ -1,3 +1,16 @@
+
+# SharpFirwall
+Add or delete firewall rules. With C#
+
+## Notes
+* Requires Elevated Privileges 
+## Examples
+```
+SharpFireWall.exe custom     /name:AllowRdp /proto:tcp /direction:in /action:allow /remoteport:* /remoteaddr:* /localport:3389 /localaddr:*
+SharpFilewall.exe service    /name:BlockWinDefend /proto:tcp /direction:out /action:block /service:sense
+SharpFilewall.exe app        /name:BlockWinDefend /proto:tcp /direction:out /action:block /appname:windefend
+```
+
 ```
 _____ __                     _____                         ____
   / ___// /_  ____ __________  / __(_)_______ _      ______ _/ / /
