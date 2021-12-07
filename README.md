@@ -2,8 +2,6 @@
 # SharpFirwall
 Add or delete firewall rules. With C#
 
-## Notes
-* Requires Elevated Privileges 
 ## Examples
 ```
 SharpFireWall.exe custom     /name:AllowRdp /proto:tcp /direction:in /action:allow /remoteport:* /remoteaddr:* /localport:3389 /localaddr:*
@@ -66,3 +64,9 @@ When passing ports the following are all valid -> [80,80-90,*]
 When passing ips the following are all valid -> [10.0.0.1,10.0.0.1/24,10.0.0.1-10.0.0.255,*]
 
 ```
+
+## Notes
+* Requires Elevated Privileges 
+
+## To do
+* Add update rule mode
