@@ -92,6 +92,34 @@ namespace SharpFireWall
                 return false;
             }
         }
+        public static bool EnableRule(string ruleName)
+        {
+            try
+            {
+                INetFwPolicy2 currentPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWPolicy2"));
+                currentPolicy.Rules.Item(ruleName).Enabled = true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+        public static bool DisableRule(string ruleName)
+        {
+            try
+            {
+                INetFwPolicy2 currentPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FWPolicy2"));
+                currentPolicy.Rules.Item(ruleName).Enabled = false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
         public static bool DeleteRule(string ruleName)
         {
             try {

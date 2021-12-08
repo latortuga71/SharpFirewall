@@ -16,7 +16,7 @@ namespace SharpFireWall
                 ::: latortuga71 :::
                                                                 ");
             Console.WriteLine("SharpFileWall.exe <mode> <args...>");
-            Console.WriteLine("Modes -> dump, custom, app, service, delete");
+            Console.WriteLine("Modes -> dump, custom, app, service, delete, disable, enable");
             // custom mode args
             Console.WriteLine("\n ::: Custom mode required args :::");
             Console.WriteLine("/name:<name>                 Name for the rule");
@@ -44,6 +44,12 @@ namespace SharpFireWall
             // delete mode args
             Console.WriteLine("\n ::: Delete mode required args :::");
             Console.WriteLine("/name:<name>                 Name for the rule");
+            // delete mode args
+            Console.WriteLine("\n ::: Disable mode required args :::");
+            Console.WriteLine("/name:<name>                 Name for the rule");
+            // delete mode args
+            Console.WriteLine("\n ::: Enable mode required args :::");
+            Console.WriteLine("/name:<name>                 Name for the rule");
             // dump mode args
             Console.WriteLine("\n ::: Dump mode optional args :::");
             Console.WriteLine("/name:<name>                 Name for the rule");
@@ -53,6 +59,8 @@ namespace SharpFireWall
             Console.WriteLine("SharpFilewall.exe service    /name:BlockWinDefend /proto:tcp /direction:out /action:block /service:sense");
             Console.WriteLine("SharpFilewall.exe app        /name:BlockWinDefend /proto:tcp /direction:out /action:block /appname:windefend");
             Console.WriteLine("SharpFirewall.exe delete     /name:AllowRdp");
+            Console.WriteLine("SharpFirewall.exe enable     /name:AllowRdp");
+            Console.WriteLine("SharpFirewall.exe disable    /name:AllowRdp");
             Console.WriteLine("SharpFirewall.exe dump       /name:Skype");
             Console.WriteLine("SharpFirewall.exe dump");
             Console.WriteLine("\n ::: Notes :::");
@@ -114,6 +122,24 @@ namespace SharpFireWall
                     }
                     Console.WriteLine("Successfully Deleted Rule.");
                     break;
+                case "disable":
+                    if (!DisableRule(parsedArgs))
+                    {
+                        Console.WriteLine("Failed to disable rule.");
+                        Console.WriteLine("\nExample Usage");
+                        Console.WriteLine("SharpFirewall.exe disable  /name:AllowRdp");
+                    }
+                    Console.WriteLine("Successfully Disabled Rule.");
+                    break;
+                case "enable":
+                    if (!EnableRule(parsedArgs))
+                    {
+                        Console.WriteLine("Failed to enable rule.");
+                        Console.WriteLine("\nExample Usage");
+                        Console.WriteLine("SharpFirewall.exe enable  /name:AllowRdp");
+                    }
+                    Console.WriteLine("Successfully Enabled Rule.");
+                    break;
                 default:
                     Help();
                     break;
@@ -160,6 +186,16 @@ namespace SharpFireWall
         {
             if (!args.TryGetValue("/name", out string rulename)) { return false; }
             return FirewallManager.DeleteRule(rulename);
+        }
+        public static bool DisableRule(Dictionary<string, string> args)
+        {
+            if (!args.TryGetValue("/name", out string rulename)) { return false; }
+            return FirewallManager.DisableRule(rulename);
+        }
+        public static bool EnableRule(Dictionary<string, string> args)
+        {
+            if (!args.TryGetValue("/name", out string rulename)) { return false; }
+            return FirewallManager.EnableRule(rulename);
         }
     }
 }
