@@ -51,6 +51,12 @@ Modes -> dump, custom, app, service, delete
  ::: Delete mode required args :::
 /name:<name>                 Name for the rule
 
+ ::: Disable mode required args :::
+/name:<name>                 Name for the rule
+
+ ::: Enable mode required args :::
+/name:<name>                 Name for the rule
+
  ::: Dump mode optional args :::
 /name:<name>                 Name for the rule
 
@@ -59,6 +65,8 @@ SharpFireWall.exe custom     /name:AllowRdp /proto:tcp /direction:in /action:all
 SharpFilewall.exe service    /name:BlockWinDefend /proto:tcp /direction:out /action:block /service:sense
 SharpFilewall.exe app        /name:BlockWinDefend /proto:tcp /direction:out /action:block /appname:windefend
 SharpFirewall.exe delete     /name:AllowRdp
+SharpFirewall.exe enable     /name:AllowRdp
+SharpFirewall.exe disable    /name:AllowRdp
 SharpFirewall.exe dump       /name:Skype
 SharpFirewall.exe dump
 
